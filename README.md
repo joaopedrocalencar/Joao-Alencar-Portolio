@@ -14,7 +14,10 @@ npm install
 ```
 
 # Running the website
-## 1.After setup, run in the terminal 'node server.js'
+## 1.After setup, run the following command in the terminal:
+```bash
+node server.js
+```
 
 ## 2.Open 'http://localhost:8080/' in a browser to acess the website
 
