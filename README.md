@@ -36,13 +36,13 @@ node server.js
 9. Open firebase.js in the project folder, then paste the new "const firebaseConfig" over the old one
 
 ### Implementation details
-**Backend:**
+1. **Backend:**
 The backend was built with the Express.js framework, which was used to implement the routes to the pages and provide access to additional files. Firebase Firestore was used as database to store data inputed from the contact form.
-**Frontend:**
+2. **Frontend:**
 The structure of the pages was created using EJS templating. The website was divided into partials (header and footer), which are displayed on every page, and views (index, about, contact) that are directed by the routes upon clicking.
-**Additional Libraries:**
+3. **Additional Libraries:**
     Typed.js: Used for animating text on the homepage.
     AOS (Animate On Scroll): Triggers fade animations on scroll.
     PureCounter: Animates the counting on the about page.
-**Bootstrap Components:**
+4. **Bootstrap Components:**
 Bootstrap was utilized for its responsive features and embedded quick CSS classes for rapid styling.
