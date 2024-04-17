@@ -35,7 +35,7 @@ node server.js
 8. Copy the content of "const firebaseConfig"
 9. Open firebase.js in the project folder, then paste the new "const firebaseConfig" over the old one
 
-*Implementation details
+###Implementation details
 **Backend:
 The backend was built with the Express.js framework, which was used to implement the routes to the pages and provide access to additional files.
 **Frontend:
