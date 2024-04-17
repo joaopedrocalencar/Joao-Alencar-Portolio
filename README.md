@@ -23,7 +23,7 @@ node server.js
 
 ## 3. Open 'http://localhost:8080/contacts-monitor' to acess the ***firebase admin page***
 
-# Setup firebase (it's setup on my account, to change it, substite my credentials with your own)
+## Setup firebase (it's setup on my account, to change it, substite my credentials with your own)
 
 1. Go to the Firebase Console (https://console.firebase.google.com/).
 2. Create a new Firestore Database
