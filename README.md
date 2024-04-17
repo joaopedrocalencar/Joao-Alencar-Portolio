@@ -1,12 +1,12 @@
 # Setup Instructions
 
-## 1. Install Node.js
+### 1. Install Node.js
 Node.js can be downloaded from the official website: [https://nodejs.org/](https://nodejs.org/).
 
-## 2. Open the Terminal
+### 2. Open the Terminal
 Open the terminal in the project folder
 
-## 3. Install Dependencies
+### 3. Install Dependencies
 Run the following command in the terminal to install the packages listed in `package.json`:
 
 ```bash
