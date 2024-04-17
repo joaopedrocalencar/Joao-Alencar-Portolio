@@ -13,7 +13,7 @@ Run the following command in the terminal to install the packages listed in `pac
 npm install
 ```
 
-## Setup firebase (substitute my credentials with your own)
+## Setup firebase (substituting my credentials with your own)
 
 ### 1. Go to the Firebase Console (https://console.firebase.google.com/).
 ### 2. Create a new Firestore Database
