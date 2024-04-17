@@ -1,0 +1,51 @@
+<div class="container">
+  <ul class="list-group" style="padding-top: 6%">
+    <% contacts.forEach(contact=> { %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>
+          <%= contact.firstName %> - <%= contact.email %>
+          <i type="button" class="bi bi-chevron-expand cursor-pointer expand-icon"></i> <!-- Ícone de seta para expandir -->
+        </span>
+        <div class="icon-group" role="group">
+          <i type="button" class="bi bi-pencil btn-edit me-2 fs-5 text-primary" data-contact-id="<%= contact.id %>"></i>
+          <i type="button" class="bi bi-trash btn-delete fs-5 text-danger" data-contact-id="<%= contact.id %>"></i>
+        </div>
+      </li>
+      <li class="list-group-item contact-details" style="display: none;">
+        <ul>
+          <li><strong>Subject:</strong> <%= contact.subject %></li>
+          <li><strong>Message:</strong> <%= contact.message %></li>
+          <li><strong>From Canada:</strong> <%= contact.fromCanada %></li>
+        </ul>
+      </li>
+      <% }); %>
+  </ul>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    // Listener buttons
+    $('.expand-icon').click(function () {
+      $(this).parent().parent().next('.contact-details').toggle();
+    });
+
+    $('.btn-edit').click(function () {
+      const contactId = $(this).data('contact-id');
+      window.location.href = `/edit-contact/${contactId}`;
+    });
+
+    $('.btn-delete').click(function () {
+      const contactId = $(this).data('contact-id');
+      $.ajax({
+        url: `/api/contact/${contactId}`,
+        type: 'DELETE',
+        success: function (response) {
+          window.location.reload();
+        },
+        error: function (xhr, status, error) {
+          console.error('Error when trying to delete contact:', error);
+        }
+      });
+    });
+  });
+</script>

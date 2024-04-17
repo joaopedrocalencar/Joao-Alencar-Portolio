@@ -1,0 +1,104 @@
+<section id="contact" class="contact" style="margin-top: 2.8%;">
+    <div class="container">
+        <div class="row justify-content-center pt-4" data-aos="fade-in">
+            <div class="col-lg-6">
+                <div class="form">
+                    <form id="contactForm">
+                        <div class="textMessageConfirmation" id="messageConfirmation"></div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName"
+                                    placeholder="Enter your first name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Your Email</label>
+                                <span data-bs-toggle="tooltip" data-bs-placement="top"
+                                    title="We'll never share your email with anyone else."
+                                    style="width: auto; height: auto;">
+                                    <i class="bi bi-info-circle-fill" style="font-size: 1rem;"></i>
+                                </span>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subjet" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="subject" placeholder="Enter the subject">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5"
+                                placeholder="Enter your message"></textarea>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="check">
+                            <label class="form-check-label" for="check">I'm from Canada</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="editButton">Submit</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="toast-container position-absolute p-3 mb-5" style="font-size: 20px;">
+        <div id="liveToast" class="toast message-toast align-items-center" role="alert" aria-live="assertive"
+            aria-atomic="true" data-delay="5000">
+            <div class="toast-header">
+                <i class="sucess-icon bi bi-check-circle-fill"></i>
+                <strong class="me-auto">Sucess</strong>
+                <small class="">just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="messageConfirmation"></div>
+        </div>
+    </div>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const contactData = '<%= (contact.firstName) %>';
+
+        document.getElementById("firstName").value =  '<%= (contact.firstName) %>';
+        document.getElementById("email").value = '<%= (contact.email) %>';
+        document.getElementById("subject").value = '<%= (contact.subject) %>';
+        document.getElementById("message").value = '<%= (contact.message) %>';
+        document.getElementById("check").checked = '<%= (contact.fromCanada) %>';
+    });
+
+    $('#editButton').click(function (event) {
+        event.preventDefault();
+        const url = new URL(window.location.href);
+        const id = url.pathname.split('/').pop();
+        var firstName = $("#firstName").val();
+        console.log(firstName)
+        var email = $("#email").val();
+        var subject = $("#subject").val();
+        var message = $("#message").val();
+        var fromCanada = $("#check").prop("checked");
+
+        $.ajax({
+            url: "/api/contact/" + id,
+            method: "PUT",
+            data: {
+                firstName: firstName,
+                email: email,
+                subject: subject,
+                message: message,
+                fromCanada: fromCanada
+            },
+            success: function (response) {
+                $("#messageConfirmation").html(response.message);
+                setTimeout(function () {
+                    window.location.href = `/contacts-monitor/`;
+                }, 3000);
+            },
+            error: function (error) {
+                $("#messageConfirmation").html(error);
+            }
+        })
+    });
+</script>

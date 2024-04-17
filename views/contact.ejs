@@ -1,0 +1,134 @@
+<main>
+    <section id="contact" class="contact" style="margin-top: 2.8%;">
+        <div class="container">
+
+            <div class="section-title">
+                <h2 class="title">Contact</h2>
+                <hr style=" width: 100px; margin-left: 0;border:1px solid #149ddd">
+                <p>Have a project in mind or just want to say hi? I'd love to hear from you.</p>
+            </div>
+
+            <div class="row" data-aos="fade-in">
+
+                <div class="col-lg-5 d-flex align-items-stretch">
+                    <div class="info">
+                        <div class="repository mb-4">
+                            <i class="bi bi-github"></i>
+                            <h4>Repository:</h4>
+                            <a href="https://github.com/joaopedrocalencar">My GitHub</a>
+                        </div>
+
+                        <div class="email">
+                            <i class="bi bi-envelope"></i>
+                            <h4>Email:</h4>
+                            <p>joaopedroalencar@hotmail.com</p>
+                        </div>
+
+                        <div class="phone">
+                            <i class="bi bi-phone"></i>
+                            <h4>Call:</h4>
+                            <p>+1 437 580 3009</p>
+                        </div>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d32616.599185001523!2d-79.63368790002018!3d43.732835697373226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b3a5391c12321%3A0x747f0c3b5cdecaa0!2sHumber%20College!5e0!3m2!1spt-BR!2sbr!4v1709675266897!5m2!1spt-BR!2sbr"
+                            frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6 d-flex align-items-stretch margin">
+                    <div class="form">
+                        <form id="contactForm">
+                            <div class="textMessageConfirmation" id="messageConfirmation"></div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="firstName" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName"
+                                        placeholder="Enter your first name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Your Email</label>
+                                    <span data-bs-toggle="tooltip" data-bs-placement="top"
+                                        title="We'll never share your email with anyone else."
+                                        style="width: auto; height: auto;">
+                                        <i class="bi bi-info-circle-fill" style="font-size: 1rem;"></i>
+                                    </span>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter your email"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subjet" class="form-label">Subject</label>
+                                <input type="text" class="form-control" id="subject" placeholder="Enter the subject">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="5"
+                                    placeholder="Enter your message"></textarea>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="check">
+                                <label class="form-check-label" for="check">I'm from Canada</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="toast-container position-absolute p-3 mb-5" style="font-size: 20px;">
+            <div id="liveToast" class="toast message-toast align-items-center" role="alert" aria-live="assertive"
+                aria-atomic="true" data-delay="5000">
+                <div class="toast-header">
+                    <i class="sucess-icon bi bi-check-circle-fill"></i>
+                    <strong class="me-auto">Sucess</strong>
+                    <small class="">just now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" id="messageConfirmation"></div>
+            </div>
+        </div>
+
+
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</main>
+<script src="/public/js/contactSubmission.js"></script>
+<script>
+    $("#contactForm").submit(function (event) {
+        event.preventDefault();
+        var firstName = $("#firstName").val();
+        console.log(firstName)
+        var email = $("#email").val();
+        var subject = $("#subject").val();
+        var message = $("#message").val();
+        var fromCanada = $("#check").prop("checked");
+
+        $.ajax({
+            url: "/api/contact",
+            method: "POST",
+            data: {
+                firstName: firstName,
+                email: email,
+                subject: subject,
+                message: message,
+                fromCanada: fromCanada
+            },
+            success: function (response) {
+                $("#messageConfirmation").html(response);
+            },
+            error: function (error) {
+                $("#messageConfirmation").html(error);
+            }
+        })
+    })
+</script>
+<style>
+    
+</style>
