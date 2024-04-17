@@ -23,6 +23,18 @@ node server.js
 
 ## 3. Open 'http://localhost:8080/contacts-monitor' to acess the ***firebase admin page***
 
+# Setup firebase (it's setup on my account, to change it, substite my credentials with your own)
+
+### 1. Go to the Firebase Console (https://console.firebase.google.com/).
+### 2. Create a new Firestore Database
+### 3. Navigate to "Project settings" -> "Service accounts"
+### 4. Click "Generate new private key", then confirm by clicking "Generate key"
+### 5. Save the downloaded JSON file into your project directory
+### 6. Rename the JSON file to `serviceAccountKey`
+### 7. In settings, navigate to "General"
+### 8. Copy the content of "const firebaseConfig"
+### 9. Open firebase.js in the project folder, then paste the new "const firebaseConfig" over the old one
+
 *Implementation details
 **Backend:
 The backend was built with the Express.js framework, which was used to implement the routes to the pages and provide access to additional files.
