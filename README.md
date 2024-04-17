@@ -21,7 +21,7 @@ node server.js
 
 ## 2. Open 'http://localhost:8080/' in a browser to acess the website
 
-## 3. Open 'http://localhost:8080/contacts-monitor' to acess the ***admin page that has acess to firebase database***
+## 3. Open 'http://localhost:8080/contacts-monitor' to acess the ***admin page*** that has acess to ***firebase database***
 
 
 # Firebase setup (it's setup on my account, to change it, substite my credentials with your own)
