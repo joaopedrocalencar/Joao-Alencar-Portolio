@@ -42,6 +42,14 @@ app.get("/about", async function (req, res) {
     });
 });
 
+//route for projects
+app.get("/projects", async function (req, res) {
+    res.render('projects', {
+        title: 'Projects',
+        page: 'projects'
+    });
+});
+
 app.get("/contacts-monitor", async function(req, res) {
     const contactsResponse = await axios.get('http://localhost:8080/api/contact')
     if(contactsResponse.status !== 200){
